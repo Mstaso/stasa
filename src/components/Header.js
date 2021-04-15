@@ -5,6 +5,9 @@ const Header = () => {
     return (
         <header className="header">
             <h1><Icon icon={locationIcon} /> Stasa </h1>
+            <label for ="nav-toggle" class="nav-toggle-label">
+                    <span></span>
+                </label>
         </header>
     )
 }
