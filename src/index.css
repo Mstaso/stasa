@@ -88,6 +88,27 @@ body {
   margin: 0;
   text-align: center;
 }
+
+/* Search */
+#searchInput {
+  margin-top: 300px;
+  width: 300px;
+  margin-left: 10px;
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 30px;
+  background-color: white;
+  background-image:url('https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-24.png');
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  padding: 8px 10px 8px 20px;
+  -webkit-transition: width 0.8s ease-in-out;
+  transition: width 0.8s ease-in-out;
+  outline: none;
+  opacity: 0.9;
+  text-indent: 20px;
+
+}
+
 .map {
   width: 100vw;
   height: 100vh;
