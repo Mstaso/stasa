@@ -3,7 +3,13 @@ import { useState } from 'react'
 
 const Search = (props) => {
 
-    const [mediaData, setMediaData] = useState([])
+    const [searchTerm, setSearchTerm] = useState([])
+
+    const handleChange = event => {
+        setSearchTerm(event.target.value);
+        // console.log(props)
+        props.fetchMedia(searchTerm);
+      };
 
     return (
         <div class="searchContainer">
@@ -12,8 +18,8 @@ const Search = (props) => {
                     id="searchInput"
                     type="text"
                     placeholder="Search"
-                    value={props.searchTerm}
-                    onChange={props.handleChange}
+                    value={searchTerm}
+                    onChange={handleChange}
                 />
             </form>
         </div>
