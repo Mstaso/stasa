@@ -5,7 +5,7 @@ import stormLocationIcon from '@iconify/icons-mdi/storm-advisory'
 const StormLocationMarker = ({ lat, lng, onClick}) => {
     return (
         <div className="location-marker" onClick={onClick}>
-            <Icon icon={stormLocationIcon} className="location-icon" />
+            <Icon icon={stormLocationIcon} className="storm-location-icon" />
         </div>
     )
 }

@@ -115,11 +115,20 @@ body {
   position: relative;
 }
 
-.location-icon {
+.fire-location-icon {
   font-size: 2rem;
   color: red;
 }
 
+.storm-location-icon {
+  font-size: 2rem;
+  color: blue;
+}
+
+.iceberg-location-icon {
+  font-size: 2rem;
+  color: rgb(95, 200, 226);
+}
 .loader {
   display: flex;
   flex-direction: column;
