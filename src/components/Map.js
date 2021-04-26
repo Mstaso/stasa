@@ -1,5 +1,6 @@
 import GoogleMapReact from 'google-map-react'
-import LocationMarker from './LocationMarker'
+import FireLocationMarker from './FireLocationMarker'
+import StormLocationMarker from './StormLocationMarker'
 import LocationInfoBox from './LocationInfoBox'
 import { useState } from 'react'
 
@@ -7,9 +8,20 @@ const Map = ({ eventData, center, zoom}) => {
 
     const [locationInfo, setLocationInfo] = useState(null)
 
-    const markers = eventData.map(ev => {
+    const fireMarkers = eventData.map(ev => {
         if(ev.categories[0].id === 8) {
-            return <LocationMarker 
+            return <FireLocationMarker 
+            lat={ev.geometries[0].coordinates[1]} 
+            lng={ev.geometries[0].coordinates[0]}
+            onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
+            />
+        }
+        return null
+    })
+
+    const stormMarkers = eventData.map(ev => {
+        if(ev.categories[0].id === 10) {
+            return <StormLocationMarker 
             lat={ev.geometries[0].coordinates[1]} 
             lng={ev.geometries[0].coordinates[0]}
             onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
@@ -26,7 +38,8 @@ const Map = ({ eventData, center, zoom}) => {
                 defaultZoom={ zoom }
             >
 
-             {markers}
+             {fireMarkers}
+             {stormMarkers}
             </GoogleMapReact>
             {locationInfo && <LocationInfoBox info={locationInfo} />}
         </div>
