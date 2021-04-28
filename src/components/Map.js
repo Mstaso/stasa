@@ -1,5 +1,5 @@
 import GoogleMapReact from 'google-map-react'
-import FireLocationMarker from './FireLocationMarker'
+import LocationMarker from './LocationMarker'
 import StormLocationMarker from './StormLocationMarker'
 import IcebergLocationMarker from './IcebergLocationMarker'
 import LocationInfoBox from './LocationInfoBox'
@@ -9,38 +9,49 @@ const Map = ({ eventData, center, zoom}) => {
 
     const [locationInfo, setLocationInfo] = useState(null)
 
-    const fireMarkers = eventData.map(ev => {
-        if(ev.categories[0].id === 8) {
-            return <FireLocationMarker 
+    // const fireMarkers = eventData.map(ev => {
+    //     if(ev.categories[0].id === 8) {
+    //         return <FireLocationMarker 
+    //         lat={ev.geometries[0].coordinates[1]} 
+    //         lng={ev.geometries[0].coordinates[0]}
+    //         onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
+    //         />
+    //     }
+    //     return null
+    // })
+    const markers = eventData.map(ev => {
+        if(!isNaN(ev.geometries[0].coordinates[1]) && !isNaN(ev.geometries[0].coordinates[0]) ) {
+            return <LocationMarker 
             lat={ev.geometries[0].coordinates[1]} 
             lng={ev.geometries[0].coordinates[0]}
+            category={ev.categories[0].title.toLowerCase()}
             onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
             />
         }
-        return null
+            return null
     })
 
-    const stormMarkers = eventData.map(ev => {
-        if(ev.categories[0].id === 10) {
-            return <StormLocationMarker 
-            lat={ev.geometries[0].coordinates[1]} 
-            lng={ev.geometries[0].coordinates[0]}
-            onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
-            />
-        }
-        return null
-    })
+    // const stormMarkers = eventData.map(ev => {
+    //     if(ev.categories[0].id === 10) {
+    //         return <StormLocationMarker 
+    //         lat={ev.geometries[0].coordinates[1]} 
+    //         lng={ev.geometries[0].coordinates[0]}
+    //         onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
+    //         />
+    //     }
+    //     return null
+    // })
 
-    const volcanoMarkers = eventData.map(ev => {
-        if(ev.categories[0].id === 15) {
-            return <IcebergLocationMarker 
-            lat={ev.geometries[0].coordinates[1]} 
-            lng={ev.geometries[0].coordinates[0]}
-            onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
-            />
-        }
-        return null
-    })
+    // const volcanoMarkers = eventData.map(ev => {
+    //     if(ev.categories[0].id === 15) {
+    //         return <IcebergLocationMarker 
+    //         lat={ev.geometries[0].coordinates[1]} 
+    //         lng={ev.geometries[0].coordinates[0]}
+    //         onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
+    //         />
+    //     }
+    //     return null
+    // })
     
     return (
         <div class="map">
@@ -50,9 +61,9 @@ const Map = ({ eventData, center, zoom}) => {
                 defaultZoom={ zoom }
             >
 
-             {fireMarkers}
-             {stormMarkers}
-             {volcanoMarkers}
+             {markers}
+             {/* {stormMarkers}
+             {volcanoMarkers} */}
             </GoogleMapReact>
             {locationInfo && <LocationInfoBox info={locationInfo} />}
         </div>

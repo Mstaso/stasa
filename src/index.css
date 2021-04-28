@@ -115,14 +115,24 @@ body {
   position: relative;
 }
 
-.fire-location-icon {
+.wildfire {
   font-size: 2rem;
   color: red;
 }
 
-.storm-location-icon {
+.volcanoes {
+  font-size: 1.5rem;
+  background-image: url('./components/img/logo-firefox.svg');
+  color: rgb(255, 174, 0);
+}
+.storm {
   font-size: 2rem;
   color: blue;
+}
+
+.sea {
+  font-size: 2rem;
+  color: rgb(95, 200, 226);
 }
 
 .iceberg-location-icon {
