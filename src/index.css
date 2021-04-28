@@ -150,9 +150,23 @@ body {
   width: 400px;
 }
 
-.location-info {
+/* filter */
+.filter-form {
   position: absolute;
   top: 80px;
+  right: 50px;
+  width: 400px;
+  min-height: 40px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  font-size: 18px;
+  color: white; 
+}
+
+.location-info {
+  position: absolute;
+  top: 200px;
   right: 50px;
   width: 400px;
   min-height: 200px;

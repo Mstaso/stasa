@@ -25,10 +25,18 @@ const App = () => {
   }, []
   )
 
+  const filterCategories = (category) => {
+      const newData = eventData.filter(ev => 
+       ev.categories[0].title.toLowerCase() !== category
+     )
+     setEventData(newData)
+   }
+
+
   return (
     <div>
       <Header />
-      { !loading ? <Map eventData={eventData}/> : <Loader />}
+      { !loading ? <Map eventData={eventData} filterCategories={filterCategories} /> : <Loader />}
       
     </div>
   );

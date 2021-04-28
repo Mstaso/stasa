@@ -1,9 +1,10 @@
 import GoogleMapReact from 'google-map-react'
 import LocationMarker from './LocationMarker'
 import LocationInfoBox from './LocationInfoBox'
+import Filter from './Filter'
 import { useState } from 'react'
 
-const Map = ({ eventData, center, zoom}) => {
+const Map = ({ eventData, filterCategories, center, zoom}) => {
 
     const [locationInfo, setLocationInfo] = useState(null)
 
@@ -17,14 +18,7 @@ const Map = ({ eventData, center, zoom}) => {
             />
         }
             return null
-    })
-
-    // const filterCategories = (category) => {
-    //     eventData.filter(ev => {
-    //       ev.categories[0].title.toLowerCase() !== category
-    //     })
-    //   }
-    
+    })    
     
     return (
         <div class="map">
@@ -36,6 +30,7 @@ const Map = ({ eventData, center, zoom}) => {
 
              {markers}
             </GoogleMapReact>
+            <Filter filterCategories={filterCategories}/>
             {locationInfo && <LocationInfoBox info={locationInfo} />}
         </div>
     )
