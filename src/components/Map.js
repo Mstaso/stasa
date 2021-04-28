@@ -1,7 +1,5 @@
 import GoogleMapReact from 'google-map-react'
 import LocationMarker from './LocationMarker'
-import StormLocationMarker from './StormLocationMarker'
-import IcebergLocationMarker from './IcebergLocationMarker'
 import LocationInfoBox from './LocationInfoBox'
 import { useState } from 'react'
 
@@ -9,16 +7,6 @@ const Map = ({ eventData, center, zoom}) => {
 
     const [locationInfo, setLocationInfo] = useState(null)
 
-    // const fireMarkers = eventData.map(ev => {
-    //     if(ev.categories[0].id === 8) {
-    //         return <FireLocationMarker 
-    //         lat={ev.geometries[0].coordinates[1]} 
-    //         lng={ev.geometries[0].coordinates[0]}
-    //         onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
-    //         />
-    //     }
-    //     return null
-    // })
     const markers = eventData.map(ev => {
         if(!isNaN(ev.geometries[0].coordinates[1]) && !isNaN(ev.geometries[0].coordinates[0]) ) {
             return <LocationMarker 
@@ -31,27 +19,12 @@ const Map = ({ eventData, center, zoom}) => {
             return null
     })
 
-    // const stormMarkers = eventData.map(ev => {
-    //     if(ev.categories[0].id === 10) {
-    //         return <StormLocationMarker 
-    //         lat={ev.geometries[0].coordinates[1]} 
-    //         lng={ev.geometries[0].coordinates[0]}
-    //         onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
-    //         />
-    //     }
-    //     return null
-    // })
-
-    // const volcanoMarkers = eventData.map(ev => {
-    //     if(ev.categories[0].id === 15) {
-    //         return <IcebergLocationMarker 
-    //         lat={ev.geometries[0].coordinates[1]} 
-    //         lng={ev.geometries[0].coordinates[0]}
-    //         onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
-    //         />
-    //     }
-    //     return null
-    // })
+    // const filterCategories = (category) => {
+    //     eventData.filter(ev => {
+    //       ev.categories[0].title.toLowerCase() !== category
+    //     })
+    //   }
+    
     
     return (
         <div class="map">
@@ -62,8 +35,6 @@ const Map = ({ eventData, center, zoom}) => {
             >
 
              {markers}
-             {/* {stormMarkers}
-             {volcanoMarkers} */}
             </GoogleMapReact>
             {locationInfo && <LocationInfoBox info={locationInfo} />}
         </div>
