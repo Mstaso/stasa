@@ -10,6 +10,10 @@ const App = () => {
   const [eventData, setEventData] = useState([])
   const [loading, setLoading] = useState(false)
 
+  const [filteredData, SetfilteredData] = useState([])
+ 
+
+
   useEffect(() => {
 
     const fetchEvents = async () => {
@@ -26,17 +30,19 @@ const App = () => {
   )
 
   const filterCategories = (category) => {
+    console.log(category)
       const newData = eventData.filter(ev => 
-       ev.categories[0].title.toLowerCase() !== category
+       ev.categories[0].title === category
      )
-     setEventData(newData)
+     newData.length === 0 ? console.error("no current matches for the selected category") : SetfilteredData(newData)
+     
    }
 
 
   return (
     <div>
       <Header />
-      { !loading ? <Map eventData={eventData} filterCategories={filterCategories} /> : <Loader />}
+      { !loading ? <Map eventData={eventData} filteredData={filteredData} filterCategories={filterCategories} /> : <Loader />}
       
     </div>
   );

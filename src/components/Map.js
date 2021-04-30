@@ -2,23 +2,29 @@ import GoogleMapReact from 'google-map-react'
 import LocationMarker from './LocationMarker'
 import LocationInfoBox from './LocationInfoBox'
 import Filter from './Filter'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-const Map = ({ eventData, filterCategories, center, zoom}) => {
+const Map = ({ eventData, filteredData, filterCategories, center, zoom}) => {
 
     const [locationInfo, setLocationInfo] = useState(null)
 
-    const markers = eventData.map(ev => {
-        if(!isNaN(ev.geometries[0].coordinates[1]) && !isNaN(ev.geometries[0].coordinates[0]) ) {
-            return <LocationMarker 
-            lat={ev.geometries[0].coordinates[1]} 
-            lng={ev.geometries[0].coordinates[0]}
-            category={ev.categories[0].title.toLowerCase()}
-            onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
-            />
-        }
-            return null
-    })    
+    console.log("check")
+    let dataToRender = []
+    filteredData.length !== 0 ? dataToRender = filteredData : dataToRender = eventData
+
+
+    const markers = dataToRender.map(ev => {
+            if(!isNaN(ev.geometries[0].coordinates[1]) && !isNaN(ev.geometries[0].coordinates[0]) ) {
+                return <LocationMarker 
+                lat={ev.geometries[0].coordinates[1]} 
+                lng={ev.geometries[0].coordinates[0]}
+                category={ev.categories[0].title.toLowerCase()}
+                onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
+                />
+            }
+                return null
+        })    
+    
     
     return (
         <div class="map">
@@ -45,3 +51,22 @@ Map.defaultProps = {
 }
 
 export default Map;
+
+
+// const markers = () => {
+//     console.log("been hit", filteredData.length)
+//     console.log("second", eventData)
+//     let dataToRender = [];
+//     filteredData.length !== 0 ? dataToRender = filteredData : dataToRender = eventData
+//     console.log(dataToRender)
+//         dataToRender.map(ev => {
+//         if(!isNaN(ev.geometries[0].coordinates[1]) && !isNaN(ev.geometries[0].coordinates[0]) ) {
+//             return <LocationMarker 
+//             lat={ev.geometries[0].coordinates[1]} 
+//             lng={ev.geometries[0].coordinates[0]}
+//             category={ev.categories[0].title.toLowerCase()}
+//             onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
+//             />
+//         }
+//             return null
+//     })    
