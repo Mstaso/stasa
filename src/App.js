@@ -22,6 +22,7 @@ const App = () => {
       const { events } = await res.json()
 
       console.log(events)
+      SetfilteredData(events)
       setEventData(events)
       setLoading(false)
     }
@@ -29,13 +30,20 @@ const App = () => {
   }, []
   )
 
-  const filterCategories = (category) => {
-    console.log(category)
-      const newData = eventData.filter(ev => 
-       ev.categories[0].title === category
-     )
-     newData.length === 0 ? console.error("no current matches for the selected category") : SetfilteredData(newData)
-     
+  const filterCategories = (category, booleanValue) => {
+    if (booleanValue) {
+        const newData = eventData.filter(ev => 
+         ev.categories[0].title === category
+       )
+       newData.length === 0 ? console.error("no current matches for the selected category") : filteredData.length === eventData.length ? SetfilteredData(newData) : SetfilteredData([...filteredData,...newData])
+    } else {
+      console.log("been hit", booleanValue, category)
+        const newData = filteredData.filter(ev => 
+          ev.categories[0].title !== category
+        )
+        console.log(newData, filteredData)
+        SetfilteredData(newData)
+    }
    }
 
 

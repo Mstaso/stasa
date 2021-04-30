@@ -2,23 +2,22 @@ import GoogleMapReact from 'google-map-react'
 import LocationMarker from './LocationMarker'
 import LocationInfoBox from './LocationInfoBox'
 import Filter from './Filter'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const Map = ({ eventData, filteredData, filterCategories, center, zoom}) => {
 
     const [locationInfo, setLocationInfo] = useState(null)
 
-    console.log("check")
     let dataToRender = []
     filteredData.length !== 0 ? dataToRender = filteredData : dataToRender = eventData
 
 
-    const markers = dataToRender.map(ev => {
+    const markers = filteredData.map(ev => {
             if(!isNaN(ev.geometries[0].coordinates[1]) && !isNaN(ev.geometries[0].coordinates[0]) ) {
                 return <LocationMarker 
                 lat={ev.geometries[0].coordinates[1]} 
                 lng={ev.geometries[0].coordinates[0]}
-                category={ev.categories[0].title.toLowerCase()}
+                category={ev.categories[0].title}
                 onClick={() => setLocationInfo({ id:ev.id, title: ev.title})}
                 />
             }

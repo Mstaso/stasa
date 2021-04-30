@@ -9,12 +9,12 @@ import { useState }from 'react'
 
     const onChange = (e) => {
         // console.log(e.target.value)
-        filterCategories(e.target.value)
+        filterCategories(e.target.value, e.target.checked)
     }
     return (
         <form class="filter-form" onChange={onChange}>
-            {/* <label for="all">All</label>
-            <input type="checkbox" name="all" value="all" ></input> */}
+            <label for="all">All</label>
+            <input type="checkbox" name="all" value="all" ></input>
             <label for="wildfires">Wildfires</label>
             <input type="checkbox" name="wildfires" value="Wildfires" ></input>
             <label for="volcanoes">Volcanoes</label>

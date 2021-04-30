@@ -7,10 +7,10 @@ import volcanoe from '@iconify/icons-mdi/lava-lamp'
 const LocationMarker = ({ lat, lng, category, onClick}) => {
     const iconType = () => {
         return (
-        category === "wildfires" ? <Icon icon={wildfire} className="wildfire" /> : 
-        category === "severe storms" ? <Icon icon={storm} className='storm' /> : 
-        category === "sea and lake ice" ? <Icon icon={sea} className='sea' /> : 
-        category === "volcanoes" ? <Icon icon={volcanoe} className='volcanoe' /> : null 
+        category === "Wildfires" ? <Icon icon={wildfire} className="wildfire" /> : 
+        category === "Severe Storms" ? <Icon icon={storm} className='storm' /> : 
+        category === "Sea and Lake Ice" ? <Icon icon={sea} className='sea' /> : 
+        category === "Volcanoes" ? <Icon icon={volcanoe} className='volcanoe' /> : null 
         )
 
     }
