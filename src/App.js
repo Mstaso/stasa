@@ -15,7 +15,6 @@ const App = () => {
 
 
   useEffect(() => {
-
     const fetchEvents = async () => {
       setLoading(true)
       const res = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/events')
@@ -31,17 +30,19 @@ const App = () => {
   )
 
   const filterCategories = (category, booleanValue) => {
+    if(category === "all") {
+      SetfilteredData(eventData)
+      return null
+    }
     if (booleanValue) {
         const newData = eventData.filter(ev => 
          ev.categories[0].title === category
        )
        newData.length === 0 ? console.error("no current matches for the selected category") : filteredData.length === eventData.length ? SetfilteredData(newData) : SetfilteredData([...filteredData,...newData])
     } else {
-      console.log("been hit", booleanValue, category)
         const newData = filteredData.filter(ev => 
           ev.categories[0].title !== category
         )
-        console.log(newData, filteredData)
         SetfilteredData(newData)
     }
    }
