@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css';
+import './Grid.css';
 import Map from './components/Map'
 import Loader from  './components/Loader'
 import Header from  './components/Header'
@@ -8,11 +9,8 @@ import { useState, useEffect } from 'react'
 
 const App = () => {
   const [eventData, setEventData] = useState([])
-  const [loading, setLoading] = useState(false)
-
   const [filteredData, SetfilteredData] = useState([])
- 
-
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchEvents = async () => {

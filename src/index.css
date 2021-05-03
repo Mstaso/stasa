@@ -18,6 +18,18 @@ body {
   overflow: hidden;
 }
 
+/* Reusable Components */
+
+.row {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* nav */
 
 .nav-toggle:checked ~ nav {
@@ -162,7 +174,38 @@ body {
   border-radius: 10px;
   font-size: 18px;
   color: white; 
+  text-align: center;
 }
+
+.filter-form button {
+  cursor: pointer;
+  margin-bottom: 20px;
+  width: 33%;
+  height: 40px;
+  border-radius: 100vh;
+  background-color: transparent;
+  font-size: 18px;
+  color: white; 
+  border: solid rgb(3, 165, 240) 2px;
+  display: inline-block;
+
+}
+
+.filter-form button:active, 
+.filter-form button:hover {
+box-shadow: 0 10px 10px black;
+border: solid white 2px;
+}
+
+.filter-form input {
+  width: 50%;
+  height: 20px;
+  margin-bottom: 15px;
+  border-radius: 50px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+/* end filter */
 
 .location-info {
   position: absolute;

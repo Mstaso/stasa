@@ -5,6 +5,7 @@ import sea from '@iconify/icons-mdi/water-alert'
 import volcanoe from '@iconify/icons-mdi/lava-lamp'
 
 const LocationMarker = ({ lat, lng, category, onClick}) => {
+    
     const iconType = () => {
         return (
         category === "Wildfires" ? <Icon icon={wildfire} className="wildfire" /> : 
